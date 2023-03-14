@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { userLogin } from '../redux/actions';
+import { userLogin, requireAPI } from '../redux/actions';
 
 class Login extends React.Component {
   state = {
@@ -13,6 +13,7 @@ class Login extends React.Component {
     const { email } = this.state;
     const { history, dispatch } = this.props;
     dispatch(userLogin(email));
+    dispatch(requireAPI(dispatch));
     history.push('/carteira');
   };
 
