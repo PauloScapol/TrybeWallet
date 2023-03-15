@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { userLogin, requireAPI } from '../redux/actions';
+import { userLogin } from '../redux/actions';
 
 class Login extends React.Component {
   state = {
@@ -13,7 +13,6 @@ class Login extends React.Component {
     const { email } = this.state;
     const { history, dispatch } = this.props;
     dispatch(userLogin(email));
-    dispatch(requireAPI(dispatch));
     history.push('/carteira');
   };
 
@@ -75,8 +74,4 @@ Login.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  user: state,
-});
-
-export default connect(mapStateToProps)(Login);
+export default connect(null)(Login);

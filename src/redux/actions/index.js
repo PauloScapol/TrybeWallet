@@ -1,19 +1,26 @@
 export const USER_LOGIN = 'USER_LOGIN';
-export const FETCH_CURRENCIES_SUCCESS = 'FETCH_CURRENCIES_SUCCESS';
-export const FETCH_CURRENCIES_FAILURE = 'FETCH_CURRENCIES_FAILURE';
+export const FETCH_CURRENCIES_SUC = 'FETCH_CURRENCIES_SUC';
+export const FETCH_CURRENCIES_FAIL = 'FETCH_CURRENCIES_FAIL';
+export const USER_EXPENSES = 'USER_EXPENSES';
 
-const failureAPI = (error) => ({ type: FETCH_CURRENCIES_FAILURE, error });
+// LOGIN
+export const userLogin = (data) => ({ type: USER_LOGIN, payload: data });
 
-export const userLogin = (payload) => ({ type: USER_LOGIN, payload });
+// FETCHING ACTIONS
+export const dataAPI = (data) => ({ type: FETCH_CURRENCIES_SUC, currencies: [...data] });
+const failureAPI = (error) => ({ type: FETCH_CURRENCIES_FAIL, error });
 
-export const dataAPI = (payload) => ({ type: FETCH_CURRENCIES_SUCCESS, payload });
+// DESPESAS DO USUÁRIO
+export const userExpenses = (data) => ({ type: USER_EXPENSES, expenses: [data] });
 
+// REALIZANDO O FETCH NA API
 export const requireAPI = () => async (dispatch) => {
   try {
     const response = await fetch('https://economia.awesomeapi.com.br/json/all');
     const data = await response.json();
     const currencies = Object.keys(data);
-    const regularCurrencies = currencies.filter((coin) => coin !== 'USDT');
+    const regularCurrencies = currencies.filter((currency) => currency !== 'USDT');
+
     dispatch(dataAPI(regularCurrencies));
   } catch (error) {
     dispatch(failureAPI(error));
