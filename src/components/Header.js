@@ -8,23 +8,23 @@ class Header extends Component {
 
     return (
       <header>
-        <div data-testid="email-field" className="wallet-header-email">
+        <h3 data-testid="email-field" className="wallet-header-email">
           Email:
           {' '}
           {email}
-        </div>
+        </h3>
 
-        <div className="total-expenses-text">
+        <h3 className="total-expenses-text">
           Despesa Total: R$
-        </div>
+        </h3>
 
-        <div data-testid="total-field" className="total-expenses">
+        <h3 data-testid="total-field" className="total-expenses">
           {totalExpenses.toFixed(2)}
-        </div>
+        </h3>
 
-        <div data-testid="header-currency-field" className="wallet-header-currency">
+        <h2 data-testid="header-currency-field" className="wallet-header-currency">
           BRL
-        </div>
+        </h2>
       </header>
     );
   }
