@@ -8,25 +8,34 @@ import Table from '../components/Table';
 class Wallet extends React.Component {
   state = { totalExpenses: 0 };
 
-  handleExpenses = () => {
+  handleExpenses = (removedExpense) => {
     const { expenses } = this.props;
-    const convertedCurrency = [];
-    let total = 0;
+    const { totalExpenses } = this.state;
 
-    expenses.forEach((element) => {
-      const { value, exchangeRates, currency } = element;
-      const tradeValue = exchangeRates[currency];
-      const currencyConversion = value * tradeValue.ask;
+    if (removedExpense) {
+      const updatedExpenses = totalExpenses - removedExpense;
 
-      convertedCurrency.push(currencyConversion);
-    });
+      this.setState({
+        totalExpenses: updatedExpenses,
+      });
 
-    if (convertedCurrency.length !== 0) {
-      total = convertedCurrency.reduce((acc, cur) => acc + cur);
+      return;
+    }
+
+    if (expenses.length > 0) {
+      const mappedExpenses = expenses
+        .map((expense) => expense.value * (expense.exchangeRates[expense.currency].ask));
+      const total = mappedExpenses.reduce((acc, cur) => acc + cur);
+
+      this.setState({
+        totalExpenses: total,
+      });
+
+      return;
     }
 
     this.setState({
-      totalExpenses: total,
+      totalExpenses: 0,
     });
   };
 
@@ -44,7 +53,7 @@ class Wallet extends React.Component {
         </section>
 
         <section>
-          <Table />
+          <Table handleExpenses={ this.handleExpenses } />
         </section>
       </>
     );

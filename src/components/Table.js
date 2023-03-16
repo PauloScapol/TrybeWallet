@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { removeExpenses } from '../redux/actions';
 
 // https://www.w3schools.com/tags/tag_tbody.asp
 
 class Table extends Component {
+  handleRemoveBtn = ({ target }, value) => {
+    const { dispatch, handleExpenses } = this.props;
+    dispatch(removeExpenses(target.id));
+    handleExpenses(value);
+  };
+
   render() {
     const { expenses } = this.props;
 
@@ -46,7 +53,18 @@ class Table extends Component {
                 <td>BRL</td>
                 <td>
                   <button className="edit-btn">Editar</button>
-                  <button className="delete-btn">Excluir</button>
+                  <button
+                    className="delete-btn"
+                    data-testid="delete-btn"
+                    onClick={ (e) => this.handleRemoveBtn(
+                      e,
+                      (expense.value * (expense.exchangeRates[expense.currency].ask))
+                        .toFixed(2),
+                    ) }
+                    id={ expense.id }
+                  >
+                    Excluir
+                  </button>
                 </td>
               </tr>
             ))}
