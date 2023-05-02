@@ -1,0 +1,53 @@
+table {
+  border-collapse: collapse;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 30px;
+  width: 100%;
+}
+
+thead {
+  background-color: #ddd;
+}
+
+th {
+  font-weight: 700;
+  padding: 10px;
+  text-align: left;
+}
+
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+tr:hover {
+  background-color: whitesmoke;
+}
+
+.edit-btn , .delete-btn {
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  margin-right: 5px;
+  padding: 5px 10px;
+}
+
+.delete-btn {
+  background-color: #f44336;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+.edit-btn:hover , .delete-btn:hover {
+  background-color: #3e8e41;
+}
+
+button [ disabled ] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

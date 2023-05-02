@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { removeExpenses } from '../redux/actions';
+import '../styles/Table.css';
 
 // https://www.w3schools.com/tags/tag_tbody.asp
 
@@ -20,7 +21,7 @@ class Table extends Component {
         <table width="100%">
           <thead>
             <tr>
-              {/* <th>ID</th> */}
+              <th>ID</th>
               <th>Descrição</th>
               <th>Tag</th>
               <th>Método de pagamento</th>
@@ -36,13 +37,12 @@ class Table extends Component {
           <tbody>
             { expenses.map((expense) => (
               <tr key={ expense.id } id={ expense.id }>
-                {/* <td>{ expense.id + 1 }</td> */}
+                <td>{ expense.id + 1 }</td>
                 <td>{ expense.description }</td>
                 <td>{ expense.tag }</td>
                 <td>{ expense.method }</td>
                 <td>{ (expense.value * 1).toFixed(2) }</td>
-                <td>{ expense.exchangeRates[expense.currency].name }</td>
-                {/* <td>{ expense.exchangeRates[expense.currency].code }</td> */}
+                <td>{ expense.exchangeRates[expense.currency].code }</td>
                 <td>
                   { (expense.exchangeRates[expense.currency].ask * 1).toFixed(2) }
                 </td>

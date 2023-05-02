@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { requireAPI, userExpenses } from '../redux/actions';
+import '../styles/WalletForm.css';
 
 class WalletForm extends Component {
   state = {
@@ -50,78 +51,82 @@ class WalletForm extends Component {
     const { value, currency, method, tag, description } = this.state;
 
     return (
-      <div>
+      <div className="walletForm">
+        <div className="div-no-description">
 
-        <label htmlFor="value">
-          Valor:
-          {' '}
-          <input
-            data-testid="value-input"
-            type="number"
-            placeholder="0"
-            onChange={ this.handleChange }
-            name="value"
-            value={ value }
-          />
-        </label>
+          <label htmlFor="value">
+            Valor:
+            {' '}
+            <input
+              data-testid="value-input"
+              className="input-number"
+              type="number"
+              placeholder="0"
+              onChange={ this.handleChange }
+              name="value"
+              value={ value }
+            />
+          </label>
 
-        <label htmlFor="currency">
-          Moeda:
-          {' '}
-          <select
-            data-testid="currency-input"
-            onChange={ this.handleChange }
-            name="currency"
-            value={ currency }
-          >
-            { currencies.map((element, index) => (
-              <option
-                key={ index }
-                value={ element }
-              >
-                {element}
-              </option>
-            ))}
-          </select>
-        </label>
+          <label htmlFor="currency">
+            Moeda:
+            {' '}
+            <select
+              data-testid="currency-input"
+              onChange={ this.handleChange }
+              name="currency"
+              value={ currency }
+            >
+              { currencies.map((element, index) => (
+                <option
+                  key={ index }
+                  value={ element }
+                >
+                  {element}
+                </option>
+              ))}
+            </select>
+          </label>
 
-        <label htmlFor="payment-method">
-          Método de pagamento:
-          {' '}
-          <select
-            data-testid="method-input"
-            onChange={ this.handleChange }
-            name="method"
-            value={ method }
-          >
-            <option value="Dinheiro">Dinheiro</option>
-            <option value="Cartão de crédito">Cartão de crédito</option>
-            <option value="Cartão de débito">Cartão de débito</option>
-          </select>
-        </label>
+          <label htmlFor="payment-method">
+            Método de pagamento:
+            {' '}
+            <select
+              data-testid="method-input"
+              onChange={ this.handleChange }
+              name="method"
+              value={ method }
+            >
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="Cartão de crédito">Cartão de crédito</option>
+              <option value="Cartão de débito">Cartão de débito</option>
+            </select>
+          </label>
 
-        <label htmlFor="tag">
-          Categoria/tag:
-          {' '}
-          <select
-            data-testid="tag-input"
-            onChange={ this.handleChange }
-            name="tag"
-            value={ tag }
-          >
-            <option value="Alimentação">Alimentação</option>
-            <option value="Lazer">Lazer</option>
-            <option value="Trabalho">Trabalho</option>
-            <option value="Transporte">Transporte</option>
-            <option value="Saúde">Saúde</option>
-          </select>
-        </label>
+          <label htmlFor="tag">
+            Categoria/tag:
+            {' '}
+            <select
+              data-testid="tag-input"
+              onChange={ this.handleChange }
+              name="tag"
+              value={ tag }
+            >
+              <option value="Alimentação">Alimentação</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Trabalho">Trabalho</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Saúde">Saúde</option>
+            </select>
+          </label>
+        </div>
 
         <label>
           Descrição:
           {' '}
           <input
             data-testid="description-input"
+            className="description"
             type="text"
             placeholder="..."
             onChange={ this.handleChange }
