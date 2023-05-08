@@ -47,7 +47,7 @@ Foi desenvolvido uma Carteira de controle de gastos com conversor de moedas. Ao 
 
 ## Demonstração da aplicação
 
-:construction: EM CONSTRUÇÃO :construction:
+![caption](https://github.com/PauloScapol/GIFS/blob/main/TrybeWallet%20(1).gif)
 
 ---
 
